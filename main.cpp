@@ -341,6 +341,13 @@ void DFA_TO_ReducedDFA() {
                 }
             }
 
+            // Distinguish states if one has a transition for the mane and the other doesn't.
+            if (hasTransition1 != hasTransition2) {
+                shouldDelete = true;
+                break;
+            }
+
+            // If both have transitions, check if they lead to a distinguishable pair.
             if (hasTransition1 && hasTransition2) {
                     pair<string, string> destPair;
                     if (nextState1->statename < nextState2->statename) {
